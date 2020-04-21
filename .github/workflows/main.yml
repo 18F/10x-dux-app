@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Deploy 10x-dux-app 
+name: 10x-dux-app 
 
 on:
   push:
@@ -45,4 +45,4 @@ jobs:
           cf_password: ${{ secrets.CG_PASSWORD }}
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
-          cf_command: cf push -f manifest.yml 10x-dux-app-dev1
+          cf_command: push -f manifest.yml 10x-dux-app-dev1
