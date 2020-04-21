@@ -40,7 +40,7 @@ jobs:
       - name: Deploy to cloud.gov
         uses: cloud-gov/cg-cli-tools@master
         with: 
-          cf_api: ${{ secrets.CG_USERNAME }}
+          cf_api: ${{ secrets.CG_ENDPOINT }}
           cf_username: ${{ secrets.CG_USERNAME }}
           cf_password: ${{ secrets.CG_PASSWORD }}
           cf_org: ${{ secrets.CG_ORG }}
