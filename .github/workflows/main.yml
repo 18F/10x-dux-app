@@ -46,3 +46,5 @@ jobs:
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
           cf_command: push -f manifest.yml 10x-dux-app-dev1
+          entrypoint: /bin/echo
+          args: command $INPUT_CF_COMMAND
