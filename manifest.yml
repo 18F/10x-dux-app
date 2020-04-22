@@ -1,0 +1,7 @@
+---
+applications:
+- name: 10x-dux-app
+  random-route: true
+  buildpacks:
+    - python_buildpack
+  memory: 128M
