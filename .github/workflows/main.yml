@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to cloud.gov
-        uses: cloud-gov/cg-cli-tools@master
+        uses: flexion/cg-cli-tools@fix-custom-cf-command
         with: 
           cf_api: ${{ secrets.CG_ENDPOINT }}
           cf_username: ${{ secrets.CG_USERNAME }}
@@ -46,5 +46,3 @@ jobs:
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
           cf_command: push -f manifest.yml 10x-dux-app-dev1
-          entrypoint: /bin/echo
-          args: command $INPUT_CF_COMMAND
