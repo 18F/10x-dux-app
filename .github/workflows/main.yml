@@ -37,7 +37,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to cloud.gov
+      - name: Deploy to cloud.gov (DEV)
+        if: github.ref == 'refs/heads/develop'
         uses: flexion/cg-cli-tools@fix-custom-cf-command
         with: 
           cf_api: ${{ secrets.CG_ENDPOINT }}
@@ -46,3 +47,13 @@ jobs:
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
           cf_command: push -f manifest.yml 10x-dux-app-dev1
+      - name: Deploy to cloud.gov (UAT)
+        if: github.ref == 'refs/heads/master'
+        uses: flexion/cg-cli-tools@fix-custom-cf-command
+        with: 
+          cf_api: ${{ secrets.CG_ENDPOINT }}
+          cf_username: ${{ secrets.CG_USERNAME }}
+          cf_password: ${{ secrets.CG_PASSWORD }}
+          cf_org: ${{ secrets.CG_ORG }}
+          cf_space: ${{ secrets.CG_SPACE }}
+          cf_command: push -f manifest.yml 10x-dux-app-uat1
