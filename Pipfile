@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 urllib3 = "==1.24.2"
-Flask = "==1.0"
+Flask = "==1.1.2"
 
 [requires]
 python_version = "3.8"
