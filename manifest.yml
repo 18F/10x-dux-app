@@ -4,4 +4,5 @@ applications:
   random-route: true
   buildpacks:
     - python_buildpack
+    - https://github.com/alexandreroman/markdown-buildpack.git
   memory: 128M
