@@ -6,3 +6,5 @@ applications:
     - https://github.com/flexion/vuls-cloudfoundry-buildpack.git#develop
     - python_buildpack
   memory: 128M
+  env:
+    VULS_HTTP_SERVER: ((vuls_http_server))
