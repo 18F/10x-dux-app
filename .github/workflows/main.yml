@@ -46,7 +46,7 @@ jobs:
           cf_password: ${{ secrets.CG_PASSWORD }}
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
-          cf_command: push -f manifest.yml 10x-dux-app-dev1
+          cf_command: push -f manifest.yml 10x-dux-app-dev1 --var vuls_http_server=${{ secrets.VULS_HTTP_SERVER }}
       - name: Deploy to cloud.gov (UAT)
         if: github.ref == 'refs/heads/master'
         uses: flexion/cg-cli-tools@fix-custom-cf-command
@@ -56,4 +56,4 @@ jobs:
           cf_password: ${{ secrets.CG_PASSWORD }}
           cf_org: ${{ secrets.CG_ORG }}
           cf_space: ${{ secrets.CG_SPACE }}
-          cf_command: push -f manifest.yml 10x-dux-app-uat1
+          cf_command: push -f manifest.yml 10x-dux-app-uat1 --var vuls_http_server=${{ secrets.VULS_HTTP_SERVER }}
