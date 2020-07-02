@@ -49,7 +49,7 @@ jobs:
           cf_command: push -f manifest.yml 10x-dux-app-dev1 --var vuls_http_server=${{ secrets.VULS_HTTP_SERVER }}
       - name: Deploy to cloud.gov (UAT)
         if: github.ref == 'refs/heads/master'
-        uses: flexion/cg-cli-tools@fix-custom-cf-command
+        uses: cloud-gov/cg-cli-tools@master
         with: 
           cf_api: ${{ secrets.CG_ENDPOINT }}
           cf_username: ${{ secrets.CG_USERNAME }}
