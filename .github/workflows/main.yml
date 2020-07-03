@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Deploy to cloud.gov (DEV)
         if: github.ref == 'refs/heads/develop'
-        uses: flexion/cg-cli-tools@fix-custom-cf-command
+        uses: cloud-gov/cg-cli-tools@a7c4650debd10784859b35e39f76676ac31bf1d1
         with: 
           cf_api: ${{ secrets.CG_ENDPOINT }}
           cf_username: ${{ secrets.CG_USERNAME }}
