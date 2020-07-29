@@ -21,7 +21,7 @@ jobs:
       with:
         python-version: 3.8
     - name: Set up pipenv
-      uses: dschep/install-pipenv-action@c90124a0ca1de8a0cc0d7763b4a92a96b56b6377
+      uses: dschep/install-pipenv-action@aaac0310d5f4a052d150e5f490b44354e08fbb8c
       with:
         version: 2020.6.2
     - name: Lint with flake8
