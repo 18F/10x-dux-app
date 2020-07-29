@@ -1,1 +1,1 @@
-web: flask run --port=$PORT
+web: pipenv run gunicorn "project:create_app()"
