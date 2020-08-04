@@ -11,16 +11,13 @@ def create_app():
     app.config['SQLALCHEMY_ECHO'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-    db = SQLAlchemy()
+    db = SQLAlchemy(app)
     db.init_app(app)
 
-    with app.app_context():
-        from .auth import auth as auth_blueprint
-        app.register_blueprint(auth_blueprint)
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
-        from .main import  main as main_blueprint
-        app.register_blueprint(main_blueprint)
+    from .main import  main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
-        db.create_all()
-
-        return app
+    return app
