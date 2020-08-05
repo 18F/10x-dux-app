@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
+from .queries import get_public_items, get_sensitve_items
 from . import db
 
 main = Blueprint('main', __name__, static_folder='static', template_folder='template')
@@ -10,12 +11,12 @@ def index():
 
 @main.route('/public')
 def public():
-    return render_template('public.html')
+    return render_template('public.html', items=get_public_items())
 
 @main.route('/sensitive')
 @login_required
 def sensitive():
-    return render_template('sensitive.html')
+    return render_template('sensitive.html', items=get_sensitve_items())
 
 @main.route('/profile')
 @login_required

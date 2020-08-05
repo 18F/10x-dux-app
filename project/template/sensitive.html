@@ -5,6 +5,16 @@
   Sensitive List
 </h1>
 <h2 class="subtitle">
-  A collection of key-value pairs for private dissemination amongst authorized individuals.
+  A collection of key-value pairs for public dissemination.
 </h2>
+<div class="container">
+  <ul>
+    {% if not items %}
+    <p>No items prepared.</p>    
+    {% endif %}
+    {% for i in items %}
+    <li>{{ i.get('key') }}: {{ i.get('value') }}</li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
