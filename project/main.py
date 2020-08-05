@@ -11,12 +11,20 @@ def index():
 
 @main.route('/public')
 def public():
-    return render_template('public.html', items=get_public_items())
+    return render_template(
+        'items.html',
+        title='Public Items',
+        items=get_public_items()
+    )
 
 @main.route('/sensitive')
 @login_required
 def sensitive():
-    return render_template('sensitive.html', items=get_sensitve_items())
+    return render_template(
+        'items.html',
+        title='Sensitive Items',
+        items=get_sensitve_items()
+    )
 
 @main.route('/profile')
 @login_required

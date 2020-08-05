@@ -2,15 +2,15 @@
 
 {% block content %}
 <h1 class="title">
-  Sensitive List
+  {{ title }}
 </h1>
 <h2 class="subtitle">
-  A collection of key-value pairs for public dissemination.
+  A collection of {{ title.lower() }}.
 </h2>
 <div class="container">
   <ul>
     {% if not items %}
-    <p>No items prepared.</p>    
+    <p>No {{ title.lower() }} prepared.</p>    
     {% endif %}
     {% for i in items %}
     <li>{{ i.get('key') }}: {{ i.get('value') }}</li>
