@@ -17,4 +17,8 @@
     {% endfor %}
   </ul>
 </div>
+<div class="container">
+  {% if groupings %}Group by:{% endif %}
+  {% for g in groupings %} {{ g }} {% endfor %}
+</div>
 {% endblock %}
