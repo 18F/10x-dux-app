@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from .queries import *
 
@@ -13,8 +13,10 @@ def public():
     return render_template(
         'items.html',
         title='Public Items',
-        items=get_public_items(),
-        groupings=get_public_items_groupings()
+        items=get_public_items(
+            order=request.args.get('order_by')
+        ),
+        orders=get_public_items_orders(),
     )
 
 @main.route('/sensitive')
@@ -23,8 +25,10 @@ def sensitive():
     return render_template(
         'items.html',
         title='Sensitive Items',
-        items=get_sensitve_items(),
-        groupings=get_sensitive_items_groupings()
+        items=get_sensitve_items(
+            order=request.args.get('order_by')
+        ),
+        orders=get_sensitive_items_orders()
     )
 
 @main.route('/profile')
