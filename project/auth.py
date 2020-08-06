@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from .commands import add_user
 from .models import User
-from . import db
+from .queries import filter_by_user
 
 auth = Blueprint('auth', __name__)
 
@@ -16,14 +17,14 @@ def login_post():
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
 
-    user = User.query.filter_by(email=email).first()
+    user = filter_by_user(email)
 
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.index'))
 
 @auth.route('/signup')
 def signup():
@@ -35,23 +36,21 @@ def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
 
-    user = User.query.filter_by(email=email).first()
+    user = filter_by_user(email)
 
     if user:
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email,
-                    name=name, 
-                    password=generate_password_hash(
-                            password,
-                            method='pbkdf2:sha256',
-                            salt_length=8
-                        )
-                    )
-
-    db.session.add(new_user)
-    db.session.commit()
+    new_user = add_user(
+        email,
+        name, 
+        generate_password_hash(
+            password,
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+    )
 
     return redirect(url_for('auth.login'))
 

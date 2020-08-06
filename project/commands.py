@@ -1,4 +1,4 @@
-from .models import PublicItem, SensitiveItem
+from .models import PublicItem, SensitiveItem, User
 from .persistence import db
 
 def generate_public_items(ctx):
@@ -12,9 +12,8 @@ def generate_public_items(ctx):
                     )
                 )
             db.session.commit()
-            print("Done!")
+
     except Exception as err:
-        print(err)
         return False
 
     return True
@@ -30,10 +29,18 @@ def generate_sensitive_items(ctx):
                     )
                 )
             db.session.commit()
-            print("Done!")
 
     except Exception as err:
-        print(err)
         return False
 
     return True
+
+def add_user(email, name, password):
+    db.session.add(
+        User(email=email,
+            name=name,
+            password=password
+        )
+    )
+
+    db.session.commit()

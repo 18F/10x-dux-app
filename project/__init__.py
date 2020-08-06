@@ -1,11 +1,15 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
-from .commands import *
+from .queries import get_user
+from .commands import generate_public_items, generate_sensitive_items
 from .persistence import db
 
-def create_app_data(app):
+def create_app_data(app, db):
+    with app.app_context():
+        db.create_all()
+
     if not generate_public_items(app.app_context()):
         raise RuntimeError('Data generation failed')
 
@@ -19,22 +23,21 @@ def create_app():
     app.config['SQLALCHEMY_ECHO'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-    db = SQLAlchemy(app)
     db.init_app(app)
-    
+
+    from . import models
+
     if environ.get('CREATE_DATA', False):
-        db.create_all()
-        create_app_data(app)
+        create_app_data(app, db)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from .models import User
-
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))
+        print('User loaded!')
+        return get_user(user_id)
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
