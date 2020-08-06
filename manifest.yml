@@ -9,3 +9,4 @@
     env:
       FLASK_APP: project
       VULS_HTTP_SERVER: ((vuls_http_server))
+      CREATE_DATA: 1
