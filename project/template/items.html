@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ title }}
+</h1>
+<h2 class="subtitle">
+  A collection of {{ title.lower() }}.
+</h2>
+<div class="container">
+  <ul>
+    {% if not items %}
+    <p>No {{ title.lower() }} prepared.</p>    
+    {% endif %}
+    {% for i in items %}
+    <li>{{ i.key }}: {{ i.value }}</li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="container">
+  {% if groupings %}Order by:{% endif %}
+  {% for o in orders %} {{ o }} {% endfor %}
+</div>
+{% endblock %}
