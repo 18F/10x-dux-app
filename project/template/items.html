@@ -13,7 +13,7 @@
     <p>No {{ title.lower() }} prepared.</p>    
     {% endif %}
     {% for i in items %}
-    <li>{{ i.get('key') }}: {{ i.get('value') }}</li>
+    <li>{{ i.key }}: {{ i.value }}</li>
     {% endfor %}
   </ul>
 </div>

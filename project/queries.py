@@ -1,5 +1,5 @@
-from . import db
 from .models import PublicItem, SensitiveItem
+from .persistence import db
 
 def get_public_items(order=None):
     if  order:

@@ -2,8 +2,15 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
+from .commands import *
+from .persistence import db
 
-db = SQLAlchemy()
+def create_app_data(app):
+    if not generate_public_items(app.app_context()):
+        raise RuntimeError('Data generation failed')
+
+    if not generate_sensitive_items(app.app_context()):
+        raise RuntimeError('Data generation failed')
 
 def create_app():
     app = Flask(__name__)
@@ -14,6 +21,10 @@ def create_app():
 
     db = SQLAlchemy(app)
     db.init_app(app)
+    
+    if environ.get('CREATE_DATA', False):
+        db.create_all()
+        create_app_data(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
