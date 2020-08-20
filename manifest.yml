@@ -3,10 +3,15 @@
   - name: 10x-dux-app
     random-route: true
     buildpacks:
-      - https://github.com/flexion/vuls-cloudfoundry-buildpack.git#master
+      - https://github.com/flexion/vuls-cloudfoundry-buildpack.git#tasks/convert-to-sidecar-buildpack
       - python_buildpack
     memory: 128M
     env:
       FLASK_APP: project
       VULS_HTTP_SERVER: ((vuls_http_server))
       CREATE_DATA: 1
+    sidecars:
+      - name: scheduler-vuls-scan
+        process_types:
+          - web
+        command: 'deps/0/supercronic -split-logs deps/0/dist/crontab'
