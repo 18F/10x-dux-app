@@ -14,4 +14,4 @@
       - name: scheduler-vuls-scan
         process_types:
           - web
-        command: 'deps/0/supercronic -split-logs deps/0/dist/crontab'
+        command: './deps/0/supercronic -split-logs ./deps/0/dist/crontab'
