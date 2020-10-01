@@ -26,4 +26,4 @@ jobs:
         pipenv install --dev
         pipenv lock --requirements > requirements.txt
     - name: Generate CycloneDX SBOM report
-      uses: CycloneDX/gh-python-generate-sbom@b57ca39c0bcb8887411377b46299b34b5fdeeab1
+      uses: CycloneDX/gh-python-generate-sbom@9847fabb5866e97354c28fe5f1d6fa8b71e3b38d
