@@ -3,7 +3,7 @@
   - name: 10x-dux-app
     random-route: true
     buildpacks:
-      - https://github.com/flexion/vuls-cloudfoundry-buildpack.git#master
+      - https://github.com/18f/vuls-cloudfoundry-buildpack.git#master
       - python_buildpack
     memory: 128M
     env:
