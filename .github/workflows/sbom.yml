@@ -30,6 +30,6 @@ jobs:
     - name: Upload CycloneDX report to project artifacts
       uses: actions/upload-artifact@27bce4eee761b5bc643f46a8dfb41b430c8d05f6 # current v2 tag
       with:
-        name: 10-dux-app-${{ github.sha }} -sbom-cyclonedx.zip
+        name: 10-dux-app-${{ github.sha }}-sbom-cyclonedx.zip
         path: ./bom.xml
         if-no-files-found: error
