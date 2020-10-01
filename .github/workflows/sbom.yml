@@ -9,7 +9,7 @@ on:
       - develop
 
 jobs:
-  test:
+  analyze-sbom:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -25,4 +25,5 @@ jobs:
       run: |
         pipenv install --dev
         pipenv lock --requirements > requirements.txt
-
+    - name: Generate CycloneDX SBOM report
+      uses: CycloneDX/gh-python-generate-sbom@b57ca39c0bcb8887411377b46299b34b5fdeeab1
