@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "554c73514355a9b0bbfdf89104ee065c46e0a9610de93b57bc3428ff6021d79f"
+            "sha256": "be9fd9a12d29314a3607d00b1c2afec0f5a079a3ec909100f5dec96325ebc9ca"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -122,9 +122,9 @@
         },
         "pypika": {
             "hashes": [
-                "sha256:abf85d7fc3da6c4213125b58ca989a1eabfcc1e9b1f5fc3f524eba5cd7a25107"
+                "sha256:f9466259179d5cb12d6cf3d453f4370a511039a6dd88fcb5089f22ba8824b408"
             ],
-            "version": "==0.38.0"
+            "version": "==0.42.1"
         },
         "sqlalchemy": {
             "hashes": [
@@ -169,11 +169,11 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:6e95524d8a547a91e08f404ae485bbb71962de46967e1b71a0cb89af24e761c5",
-                "sha256:79ee589a3caca649a9bfd2a8de4709837400dfa00b6cc81962a1e6a1815969ae",
-                "sha256:f8d2bd89d25bc39dabe7d23df520442fa1d8969b82544370e03d88b5a591c392"
+                "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918",
+                "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c",
+                "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"
             ],
-            "version": "==3.7.4.2"
+            "version": "==3.7.4.3"
         },
         "werkzeug": {
             "hashes": [
@@ -186,11 +186,11 @@
     "develop": {
         "flake8": {
             "hashes": [
-                "sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c",
-                "sha256:f04b9fcbac03b0a3e58c0ab3a0ecc462e023a9faf046d57794184028123aa208"
+                "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839",
+                "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"
             ],
             "index": "pypi",
-            "version": "==3.8.3"
+            "version": "==3.8.4"
         },
         "mccabe": {
             "hashes": [

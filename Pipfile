@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-flake8 = "==3.8.3"
+flake8 = "==3.8.4"
 
 [packages]
 tortoise-orm = "==0.16.6"
