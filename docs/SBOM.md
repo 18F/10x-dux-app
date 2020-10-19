@@ -117,7 +117,7 @@ the Github Artifacts for your repository as a compressed ZIP archive. Storing th
 within the repo will allow development teams to maintain a historical list of
 changes and ease further integration upstream with one or more Software Composition
 Analysis tools. This integration can be done manually, but also in bulk, thanks to
-the capable APIs provided by Github for Storage and its other features.
+the capable APIs provided by [Github for Artifacts](https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#artifacts) and its other features.
 Additionally, using the native Github CI/CD system without additional
 authentication tokens means convenient storage without additional configuration
 and/or security engineering concerns.
