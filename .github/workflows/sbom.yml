@@ -6,7 +6,7 @@ name: Generate SBOM Report
 on:
   pull_request:
     branches:
-      - develop
+      - '*'
 
 jobs:
   analyze-sbom:
