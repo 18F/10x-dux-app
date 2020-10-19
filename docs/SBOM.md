@@ -127,6 +127,8 @@ generated. This configuration can be further enhanced to prevent pull requests
 where this Github Actions workflow fails, thereby preventing any promotion of
 code to a known branch that cannot generate a valid SBOM.
 
+One successful CI run with an example report [can be retrieved here](https://github.com/18F/10x-dux-app/suites/1273719661/artifacts/19646001).
+
 ```yaml
     - name: Upload CycloneDX report to project artifacts
       uses: actions/upload-artifact@27bce4eee761b5bc643f46a8dfb41b430c8d05f6 # current v2 tag
