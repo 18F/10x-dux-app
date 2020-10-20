@@ -198,12 +198,6 @@ With this in mind, the most readily available tools with free licenses and
 supporting tooling with the Github-native Actions continuous integration and
 continuous deployment platform is CycloneDX.
 
-<a name="fn1">1</a>: https://www.ntia.gov/files/ntia/publications/sbom_overview_20200818.pdf
-
-<a name="fn2">2</a>: https://www.ntia.gov/files/ntia/publications/ntia_sbom_use_cases_roles_benefits-nov2019.pdf
-
-<a name="fn3">3</a>: https://www.ntia.gov/files/ntia/publications/ntia_sbom_formats_and_standards_whitepaper_-_version_20191025.pdf
-
 # Conclusions
 
 Using Github Actions provided by CycloneDX is effective, but addresses several
@@ -236,3 +230,9 @@ shortcomings.
   as a whole for statistics or higher-level patterns. This prototype simply
   stores them. Future work is needed to evaluate deployment of an open-source
   solution or evaluate a propriety solution, either SaaS or on-premises.
+
+<a name="fn1">1</a>: https://www.ntia.gov/files/ntia/publications/sbom_overview_20200818.pdf
+
+<a name="fn2">2</a>: https://www.ntia.gov/files/ntia/publications/ntia_sbom_use_cases_roles_benefits-nov2019.pdf
+
+<a name="fn3">3</a>: https://www.ntia.gov/files/ntia/publications/ntia_sbom_formats_and_standards_whitepaper_-_version_20191025.pdf
