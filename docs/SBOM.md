@@ -2,13 +2,13 @@
 
 This documentation explains what, why, and how to use Github Actions to derive
 a Software Bill of Materials for this and similar applications deployed within
-the github.com ecosystem in the GSA and 18F organizations.
+the github.com ecosystem for the GSA and 18F organizations.
 
 # What?
 
 Per the Department of Commerce's National Telecommunications and Information
 Administration leading the SBOM adoption effort in the US public and private
-sector, a SBOM is "formal record containing the details and supply chain
+sector, a SBOM is the "formal record containing the details and supply chain
 relationships of various components used in building software. ​An SBOM is
 effectively a nested inventory: a list of ingredients that make up software
 components." <sup>[1](fn1)</sup>
@@ -19,7 +19,7 @@ components." <sup>[1](fn1)</sup>
 
 A developer of a new or existing project will have to itemize the one or more
 programming language(s) the project uses or will use. The Github Actions that
-CycloneDX developers are using target a specific language to analyze its
+CycloneDX developers are developing target a specific language to analyze its
 respective package manager and generate a SBOM from the package manager manifest.
 
 At the time of this writing, in October 2020, the CycloneDX community supports
@@ -27,7 +27,7 @@ the following language runtimes with pre-made Github Actions.
 
 - [.NET `.sln`, `.csproj`, and `packages.config`](https://github.com/CycloneDX/gh-dotnet-generate-sbom)
 - [NodeJS](https://github.com/CycloneDX/gh-node-module-generatebom)
-- [Python `Pipfile`](https://github.com/CycloneDX/gh-python-generate-sbom)
+- [Python `requirements.txt`](https://github.com/CycloneDX/gh-python-generate-sbom)
 - [PHP Composer](https://github.com/CycloneDX/gh-php-composer-generate-sbom)
 
 For this example repository, we have chosen Python.
@@ -79,8 +79,9 @@ jobs:
 ## Add Language Package Manager Setup
 
 These important steps are specific to the language runtime(s). If you select
-Python from the list of supported languages above, you will then use `pipenv`
-job steps to bootstrap requirements and create a `requirements.txt` file.
+Python from the list of supported languages above, you will potentially use
+`pipenv` job steps to bootstrap requirements and create a `requirements.txt`
+file.
 
 ```yaml
     - name: Set up Python 3.8
@@ -97,6 +98,19 @@ job steps to bootstrap requirements and create a `requirements.txt` file.
         pipenv lock --requirements > requirements.txt
 ```
 
+The need to duplicate this information from `Pipfile` to `requirements.txt` in this
+case is specific to additional tooling requirements for 10x Dependency Upgrades
+and research into differential requirements of dependency scanners. If a
+development team uses `requirements.txt` exclusively without any use of `pipenv`,
+the final two of three steps can be skipped.
+
+```yaml
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+```
+
 ## Analyze the Package Manager Manifest to Generate a SBOM
 
 This step will process a Python requirements file to actually build the SBOM.
@@ -110,17 +124,30 @@ scan, and it is best they refer to this [upstream documentation](https://github.
       uses: CycloneDX/gh-python-generate-sbom@9847fabb5866e97354c28fe5f1d6fa8b71e3b38d # current v1 tag
 ```
 
+If your repo is exclusively Javascript, you would replace the above with the
+following example.
+
+```yaml
+    - name: Generate CycloneDX SBOM report
+      uses: CycloneDX/gh-node-module-generatebom@b5753d516608ed84f7a40eb19b7687b5828b9b2d # current v1 tag
+```
+
+If your project includes both Python and Javascript, you would add this step,
+specific to Javascript, beneath the previous Python-specific steps to obtain
+SBOM coverage for both languages.
+
 ## Store Results in Github Artifacts for Later Retrieval and Analysis
 
 The final step in the job stores the resulting SBOM in CycloneDX's XML format to
-the Github Artifacts for your repository as a compressed ZIP archive. Storing this
-within the repo will allow development teams to maintain a historical list of
-changes and ease further integration upstream with one or more Software Composition
-Analysis tools. This integration can be done manually, but also in bulk, thanks to
-the capable APIs provided by [Github for Artifacts](https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#artifacts) and its other features.
-Additionally, using the native Github CI/CD system without additional
-authentication tokens means convenient storage without additional configuration
-and/or security engineering concerns.
+the Github Artifacts for your repository as a compressed ZIP archive, including
+a hash in the archive's name to uniquely fingerprinting the sum of code analyzed
+using `git` internals. Storing this within the repo will allow development teams
+to maintain a historical list of changes and ease further integration upstream
+with one or more Software Composition Analysis tools. This integration can be
+done manually, but also in bulk, thanks to the capable APIs provided by [Github for Artifacts](https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#artifacts)
+and its other features. Additionally, using the native Github CI/CD system
+without additional authentication tokens means convenient storage without
+additional configuration and/or security engineering concerns.
 
 As configured below with `if-no-files-found` a CI job will fail if a file is not
 generated. This configuration can be further enhanced to prevent pull requests
