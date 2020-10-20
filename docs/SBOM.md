@@ -219,6 +219,8 @@ shortcomings.
   - Development teams must manage one or more configuration for each language
     they use, which is increasingly onerous as the number of repos and/or
     languages they use in each repo increases.
+  - Repos with one language are easy to manage, but any repo with two or more
+    languages will require SBOM output be merged.
 - The easiest to implement SBOM standard with freely available or open source
   tooling is CycloneDX, but SWID is popular with SCA and enterprise management
   systems, in GSA, as well as the public and private sectors overall. SWID, and
