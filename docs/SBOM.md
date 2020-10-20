@@ -8,7 +8,7 @@ the github.com ecosystem for the GSA and 18F organizations.
 
 Per the Department of Commerce's National Telecommunications and Information
 Administration leading the SBOM adoption effort in the US public and private
-sector, a SBOM is the "formal record containing the details and supply chain
+sector, an SBOM is the "formal record containing the details and supply chain
 relationships of various components used in building software. ​An SBOM is
 effectively a nested inventory: a list of ingredients that make up software
 components." <sup>[1](fn1)</sup>
@@ -32,7 +32,7 @@ the following language runtimes with pre-made Github Actions.
 
 For this example repository, we have chosen Python.
 
-A final example for this repo is in [`.github/workflows/sbom.yml`]([.github/workflows/sbom.yml](https://github.com/18F/10x-dux-app/blob/19e15fe9c20dbb543b3baefdadcd7921b3795898/.github/workflows/sbom.yml)).
+A final example for this repo is in [`.github/workflows/sbom.yml`](https://github.com/18F/10x-dux-app/blob/19e15fe9c20dbb543b3baefdadcd7921b3795898/.github/workflows/sbom.yml).
 
 ## Create a Github Action Configuration
 
@@ -200,7 +200,7 @@ continuous deployment platform is CycloneDX.
 
 # Conclusions
 
-Using Github Actions provided by CycloneDX is effective, but addresses several
+Using Github Actions provided by CycloneDX is effective, but surfaces several
 shortcomings.
 
 - Freely available and open-source tooling is designed for use with specific
@@ -225,7 +225,7 @@ shortcomings.
   difficult as engineers will need knowledge of languages and configuration for
   each repo and need to be able to code that to ease bootstrapping repos in bulk.
   A solution that will make best effort attempts at auto-detection will be most
-  welcome or a proprietary alternative will be required.s
+  welcome or a proprietary alternative will be required.
 - No accessible service exists to aggregate the resulting SBOMs to analyze them
   as a whole for statistics or higher-level patterns. This prototype simply
   stores them. Future work is needed to evaluate deployment of an open-source
